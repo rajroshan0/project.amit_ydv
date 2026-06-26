@@ -212,6 +212,19 @@
     .cart-item-name { font-size: 14px; font-weight: bold; }
     .cart-item-price { font-size: 13px; color: #ff4d4d; }
     .cart-item-remove { background: none; border: none; color: #999; cursor: pointer; font-size: 16px; }
+    .qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+    .qty-btn {
+      width: 26px; height: 26px;
+      border: 1px solid #ddd;
+      background: #f5f5f5;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .qty-btn:hover { background: #e0e0e0; }
+    .qty-num { font-size: 14px; font-weight: bold; min-width: 20px; text-align: center; }
     .cart-footer { padding: 16px 20px; border-top: 1px solid #eee; }
     .cart-total { font-size: 17px; font-weight: bold; margin-bottom: 14px; }
     .btn-pay {
@@ -425,22 +438,42 @@
     document.getElementById('btn-logout').style.display = 'inline';
   }
 
-  var cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  var cart = JSON.parse(localStorage.getItem('cart') || '[]').map(function(item) {
+    return { name: item.name, price: Number(item.price), img: item.img, qty: item.qty || 1 };
+  });
+
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 
   function updateCartCount() {
-    document.getElementById('cart-count').textContent = cart.length;
+    var total = cart.reduce(function(sum, item) { return sum + item.qty; }, 0);
+    document.getElementById('cart-count').textContent = total;
   }
 
   function addToCart(name, price, img) {
-    cart.push({ name: name, price: price, img: img });
-    localStorage.setItem('cart', JSON.stringify(cart));
+    var existing = cart.find(function(i) { return i.name === name; });
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ name: name, price: price, img: img, qty: 1 });
+    }
+    saveCart();
     updateCartCount();
     openCart();
   }
 
+  function changeQty(index, delta) {
+    cart[index].qty += delta;
+    if (cart[index].qty <= 0) cart.splice(index, 1);
+    saveCart();
+    updateCartCount();
+    renderCart();
+  }
+
   function removeFromCart(index) {
     cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    saveCart();
     updateCartCount();
     renderCart();
   }
@@ -455,12 +488,18 @@
     }
     var total = 0;
     container.innerHTML = cart.map(function(item, i) {
-      total += item.price;
+      var subtotal = item.price * item.qty;
+      total += subtotal;
       return '<div class="cart-item">' +
         '<img src="' + item.img + '" alt="">' +
         '<div class="cart-item-info">' +
           '<div class="cart-item-name">' + item.name + '</div>' +
-          '<div class="cart-item-price">RS ' + item.price + '</div>' +
+          '<div class="cart-item-price">RS ' + subtotal + '</div>' +
+          '<div class="qty-controls">' +
+            '<button class="qty-btn" onclick="changeQty(' + i + ', -1)">&#8722;</button>' +
+            '<span class="qty-num">' + item.qty + '</span>' +
+            '<button class="qty-btn" onclick="changeQty(' + i + ', 1)">&#43;</button>' +
+          '</div>' +
         '</div>' +
         '<button class="cart-item-remove" onclick="removeFromCart(' + i + ')">&#x2715;</button>' +
       '</div>';
