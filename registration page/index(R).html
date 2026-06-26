@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f0f4f8;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      background: white;
+      padding: 36px 32px;
+      border-radius: 10px;
+      width: 360px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+    input:focus { border-color: #4a90e2; }
+    .gender-group {
+      margin-bottom: 16px;
+    }
+    .gender-group label { margin-bottom: 8px; }
+    .gender-options { display: flex; gap: 16px; font-size: 14px; color: #333; }
+    .gender-options label { display: flex; align-items: center; gap: 4px; margin: 0; }
+    .error { color: red; font-size: 13px; margin-bottom: 12px; display: none; }
+    button {
+      width: 100%;
+      padding: 11px;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button:hover { background: #357abd; }
+    .login-link {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #555;
+    }
+    .login-link a { color: #4a90e2; text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h2>Register</h2>
+  <form action="/register" method="POST" onsubmit="return validate()">
+    <label>Full Name</label>
+    <input type="text" name="fullname" placeholder="Enter your name" required>
+
+    <label>Username</label>
+    <input type="text" name="username" placeholder="Choose a username" required>
+
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Enter your email" required>
+
+    <label>Password</label>
+    <input type="password" id="pwd" name="password" placeholder="Create a password" required>
+
+    <label>Confirm Password</label>
+    <input type="password" id="cpwd" name="confirm_password" placeholder="Repeat your password" required>
+
+    <div class="gender-group">
+      <label>Gender</label>
+      <div class="gender-options">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" value="Other"> Other</label>
+      </div>
+    </div>
+
+    <p class="error" id="err">Passwords do not match.</p>
+    <button type="submit">Register</button>
+  </form>
+  <div class="login-link">Already have an account? <a href="/login">Sign in</a></div>
+</div>
+<script>
+  function validate() {
+    var err = document.getElementById("err");
+    if (document.getElementById("pwd").value !== document.getElementById("cpwd").value) {
+      err.style.display = "block";
+      return false;
+    }
+    err.style.display = "none";
+    return true;
+  }
+</script>
+</body>
+</html>

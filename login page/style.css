@@ -1,0 +1,82 @@
+
+
+
+/* Reset default spacing */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: lightblue;
+
+  /* Centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Arial, sans-serif;
+}
+
+/* Login box */
+.container {
+  background: yellow;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Input fields */
+.input-box {
+  margin: 15px 0;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+}
+
+/* Button */
+.input-box.button input {
+  background: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.input-box.button input:hover {
+  background: #0056b3;
+}
+
+/* Social options */
+.option {
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+.twitter a, .facebook a {
+  display: block;
+  padding: 10px;
+  margin: 5px 0;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.twitter a {
+  background: #1DA1F2;
+}
+
+.facebook a {
+  background: #3b5998;
+}

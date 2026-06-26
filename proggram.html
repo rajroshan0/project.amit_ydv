@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanStyle Fashion Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f8f9fa; }
+
+    .top-bar {
+      background: #111;
+      color: white;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      background: #ff4d4d;
+      padding: 5px 14px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .top-bar a:hover { background: #cc3333; }
+    .top-bar span {
+      color: #ccc;
+      font-size: 14px;
+    }
+    #cart-icon {
+      position: relative;
+      cursor: pointer;
+      color: white;
+      font-size: 20px;
+      margin-left: 6px;
+    }
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff4d4d;
+      color: white;
+      font-size: 11px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav#navbar { background: #222; }
+    .navbar-brand { color: white !important; font-size: 26px; font-weight: bold; }
+    .nav-link { color: white !important; }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://static.vecteezy.com/system/resources/previews/006/966/157/non_2x/woman-using-smartphone-with-shopping-bag-in-hands-photo.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 88vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+    .hero h2 { font-size: 52px; font-weight: bold; }
+    .hero p { font-size: 18px; margin-top: 16px; max-width: 560px; }
+    .hero a {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 28px;
+      background: #ff4d4d;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    .product-card:hover { transform: translateY(-4px); }
+    .product-card img { width: 100%; height: 280px; object-fit: cover; }
+    .product-info { padding: 16px; text-align: center; }
+    .product-name { font-size: 17px; font-weight: bold; }
+    .product-price { font-size: 17px; color: #ff4d4d; margin-top: 8px; }
+    .product-btns { display: flex; gap: 8px; margin-top: 14px; }
+    .btn-cart {
+      flex: 1;
+      padding: 9px;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .btn-cart:hover { background: #ddd; }
+    .btn-buy {
+      flex: 1;
+      padding: 9px;
+      background: #111;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-buy:hover { background: #333; color: white; }
+
+    #about-us { padding: 70px 0; background: white; }
+    .about { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+    .about img { width: 100%; max-width: 420px; border-radius: 10px; }
+    .about .text { flex: 1; }
+    .about .text h2 { margin-bottom: 16px; font-weight: bold; }
+    .about .text p { margin-bottom: 12px; color: #555; }
+
+    #contact { padding: 70px 0; background: #f1f1f1; }
+    .contact-wrap { display: flex; gap: 40px; flex-wrap: wrap; }
+    .contact-info h1 { font-size: 28px; margin-bottom: 12px; }
+    .contact-info p { color: #555; margin-bottom: 8px; }
+    .contact-form { flex: 1; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .contact-form button {
+      padding: 11px 26px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer { background: #111; color: white; padding: 50px 0; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    footer h4 { margin-bottom: 14px; }
+    footer a { color: #ccc; text-decoration: none; display: block; margin-bottom: 8px; font-size: 14px; }
+    footer p { color: #aaa; font-size: 14px; }
+
+    .cart-overlay {
+      display: none;
+      position: fixed;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 999;
+    }
+    .cart-sidebar {
+      position: fixed;
+      top: 0; right: -380px;
+      width: 360px;
+      height: 100%;
+      background: white;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.3s;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+    }
+    .cart-sidebar.open { right: 0; }
+    .cart-header {
+      padding: 18px 20px;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-header h3 { font-size: 18px; margin: 0; }
+    .cart-close { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 16px; }
+    .cart-empty { text-align: center; color: #999; margin-top: 40px; }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: 14px; font-weight: bold; }
+    .cart-item-price { font-size: 13px; color: #ff4d4d; }
+    .cart-item-remove { background: none; border: none; color: #999; cursor: pointer; font-size: 16px; }
+    .cart-footer { padding: 16px 20px; border-top: 1px solid #eee; }
+    .cart-total { font-size: 17px; font-weight: bold; margin-bottom: 14px; }
+    .btn-pay {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn-pay:hover { background: #cc3333; color: white; }
+
+    @media(max-width: 768px) {
+      .hero h2 { font-size: 32px; }
+      .about { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar" id="top-bar">
+  <span id="user-greeting" style="display:none"></span>
+  <a href="/login" id="btn-login">Login</a>
+  <a href="/registration" id="btn-signup">Sign Up</a>
+  <a href="/logout" id="btn-logout" style="display:none; background:#555;">Logout</a>
+  <div id="cart-icon" onclick="openCart()">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span id="cart-count">0</span>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">UrbanStyle</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navLinks">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#mens">Men</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ladies">Women</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about-us">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="home">
+  <div class="hero">
+    <div>
+      <h2>Discover Your Perfect Style</h2>
+      <p>Modern fashion collections designed for comfort, confidence, and everyday elegance.</p>
+      <a href="#mens">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<section id="mens" class="container mt-5 mb-4">
+  <h2 class="text-center">Men's Collection</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="https://th.bing.com/th/id/OIP.KdNTIT0xX_DHUVo3pWkOLgHaHa?w=208&h=208&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Classic Denim Jacket">
+      <div class="product-info">
+        <div class="product-name">Classic Denim Jacket</div>
+        <div class="product-price">RS 700</div>
+        <div class="product-btns">
+          <button class="btn-cart" onclick="addToCart('Classic Denim Jacket', 700, this.closest('.product-card').querySelector('img').src)">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+          <a href="/payment" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://th.bing.com/th/id/OIP.lm1cO1gcQQQhwxNA1pr6twHaG-?w=208&h=196&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Premium Cotton Shirt">
+      <div class="product-info">
+        <div class="product-name">Premium Cotton Shirt</div>
+        <div class="product-price">RS 550</div>
+        <div class="product-btns">
+          <button class="btn-cart" onclick="addToCart('Premium Cotton Shirt', 550, this.closest('.product-card').querySelector('img').src)">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+          <a href="/payment" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ladies" class="container mt-5 mb-5">
+  <h2 class="text-center">Women's Collection</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="https://th.bing.com/th/id/OIP.19KIjjSna4ZyRV9Zv0EjzQHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Elegant Summer Dress">
+      <div class="product-info">
+        <div class="product-name">Elegant Summer Dress</div>
+        <div class="product-price">RS 850</div>
+        <div class="product-btns">
+          <button class="btn-cart" onclick="addToCart('Elegant Summer Dress', 850, this.closest('.product-card').querySelector('img').src)">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+          <a href="/payment" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://th.bing.com/th/id/OIP.MQ6EuOUiJjGIqhRRt0tiCAHaJ3?w=208&h=277&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Floral Printed Outfit">
+      <div class="product-info">
+        <div class="product-name">Floral Printed Outfit</div>
+        <div class="product-price">RS 650</div>
+        <div class="product-btns">
+          <button class="btn-cart" onclick="addToCart('Floral Printed Outfit', 650, this.closest('.product-card').querySelector('img').src)">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+          <a href="/payment" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about-us">
+  <div class="container about">
+    <img src="https://images.pexels.com/photos/6214473/pexels-photo-6214473.jpeg?auto=compress&w=600" alt="About Us">
+    <div class="text">
+      <h2>About Us</h2>
+      <p>At UrbanStyle, we believe fashion is more than clothing. It is a reflection of personality, confidence, and lifestyle.</p>
+      <p>Our mission is to provide trendy, comfortable, and affordable fashion for everyone.</p>
+      <p>We focus on quality products, customer satisfaction, and a smooth shopping experience for every visitor.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h4 style="color:#ff4d4d; text-transform:uppercase; font-size:13px;">Information</h4>
+        <h1>Contact Us</h1>
+        <p>Have questions? Our team is always ready to help.</p>
+        <p><strong>Email:</strong> support@urbanstyle.com</p>
+        <p><strong>Phone:</strong> +91 9876543210</p>
+      </div>
+      <div class="contact-form">
+        <form action="https://formspree.io/f/xzbowpjq" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" rows="5" placeholder="Your message..." required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>UrbanStyle</h4>
+      <p>Bringing modern fashion and premium quality together for every generation.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#mens">Men</a>
+      <a href="#ladies">Women</a>
+      <a href="#about-us">About</a>
+    </div>
+    <div>
+      <h4>Customer Support</h4>
+      <a href="#">Shipping Details</a>
+      <a href="#">Return Policy</a>
+      <a href="/payment">Payment</a>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">&#x2715;</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total" id="cart-total"></div>
+    <a href="/payment" class="btn-pay">Proceed to Pay</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function getCookie(name) {
+    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? decodeURIComponent(v[2]) : null;
+  }
+
+  var user = getCookie('loggedUser');
+  if (user) {
+    document.getElementById('user-greeting').textContent = 'Hi, ' + user;
+    document.getElementById('user-greeting').style.display = 'inline';
+    document.getElementById('btn-login').style.display = 'none';
+    document.getElementById('btn-signup').style.display = 'none';
+    document.getElementById('btn-logout').style.display = 'inline';
+  }
+
+  var cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+  function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.length;
+  }
+
+  function addToCart(name, price, img) {
+    cart.push({ name: name, price: price, img: img });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    openCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+  }
+
+  function renderCart() {
+    var container = document.getElementById('cart-items');
+    var footer = document.getElementById('cart-footer');
+    if (cart.length === 0) {
+      container.innerHTML = '<div class="cart-empty"><i class="fa-solid fa-cart-shopping" style="font-size:40px;color:#ddd"></i><br><br>Your cart is empty</div>';
+      footer.style.display = 'none';
+      return;
+    }
+    var total = 0;
+    container.innerHTML = cart.map(function(item, i) {
+      total += item.price;
+      return '<div class="cart-item">' +
+        '<img src="' + item.img + '" alt="">' +
+        '<div class="cart-item-info">' +
+          '<div class="cart-item-name">' + item.name + '</div>' +
+          '<div class="cart-item-price">RS ' + item.price + '</div>' +
+        '</div>' +
+        '<button class="cart-item-remove" onclick="removeFromCart(' + i + ')">&#x2715;</button>' +
+      '</div>';
+    }).join('');
+    document.getElementById('cart-total').textContent = 'Total: RS ' + total;
+    footer.style.display = 'block';
+  }
+
+  function openCart() {
+    renderCart();
+    document.getElementById('cart-sidebar').classList.add('open');
+    document.getElementById('cart-overlay').style.display = 'block';
+  }
+
+  function closeCart() {
+    document.getElementById('cart-sidebar').classList.remove('open');
+    document.getElementById('cart-overlay').style.display = 'none';
+  }
+
+  updateCartCount();
+</script>
+</body>
+</html>

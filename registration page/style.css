@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
+  background-color: lightblue;
+  font-family: Arial, sans-serif;
+}
+
+/* Form container */
+.container {
+  background: lightsalmon;
+  padding: 25px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Title */
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input boxes */
+.input_box {
+  margin-bottom: 15px;
+}
+
+.input_box .details {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input_box input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Gender section */
+.gender_details {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+/* Button */
+.button input {
+  width: 100%;
+  padding: 10px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button input:hover {
+  background: #0056b3;
+}

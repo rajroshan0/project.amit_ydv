@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>UrbanStyle Fashion Store</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-navbar {
+      background-color: #111;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-icons i {
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .other-links button {
+      border: none;
+      padding: 6px 12px;
+      margin-right: 10px;
+      background-color: #ff4d4d;
+      border-radius: 5px;
+    }
+
+    .other-links button a {
+      text-decoration: none;
+      color: white;
+    }
+
+    #navbar {
+      background-color: #222;
+    }
+
+    .navbar-brand {
+      color: white !important;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      color: white !important;
+      margin-left: 15px;
+    }
+
+    .home_page {
+      background: linear-gradient(rgba(0,0,0,0.5),
+      rgba(0,0,0,0.5)),
+      url('https://static.vecteezy.com/system/resources/previews/006/966/157/non_2x/woman-using-smartphone-with-shopping-bag-in-hands-photo.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .home_txt h2 {
+      font-size: 55px;
+      font-weight: bold;
+    }
+
+    .home_txt p {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .home_txt button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      border: none;
+      background-color: #ff4d4d;
+      border-radius: 5px;
+    }
+
+    .home_txt button a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .best-seller {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .best-p1 {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .best-p1:hover {
+      transform: translateY(-5px);
+    }
+
+    .best-p1 img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .best-p1-txt {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .name-of-p {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 18px;
+      color: #ff4d4d;
+      margin-top: 10px;
+    }
+
+    .buy-now button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #111;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .buy-now button a {
+      text-decoration: none;
+      color: white;
+    }
+
+    #about-us {
+      padding: 70px 0;
+      background-color: white;
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .about img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 10px;
+    }
+
+    .text {
+      flex: 1;
+    }
+
+    .text h2 {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    #contact {
+      padding: 70px 0;
+      background-color: #f1f1f1;
+    }
+
+    .form {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .form-details input,
+    .form-details textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-details button {
+      padding: 12px 25px;
+      border: none;
+      background-color: #ff4d4d;
+      color: white;
+      border-radius: 5px;
+    }
+
+    footer {
+      background-color: #111;
+      color: white;
+      padding: 50px 0;
+    }
+
+    footer a {
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 30px;
+    }
+
+    @media(max-width:768px) {
+      .home_txt h2 {
+        font-size: 35px;
+      }
+
+      .about {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Top Navbar -->
+
+  <div class="top-navbar">
+
+    <div class="top-icons">
+      <i class="fa-brands fa-twitter"></i>
+      <i class="fa-brands fa-facebook-f"></i>
+      <i class="fa-brands fa-instagram"></i>
+    </div>
+
+    <div class="other-links">
+      <button><a href="login.html">Login</a></button>
+      <button><a href="register.html">Register</a></button>
+
+      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+
+  </div>
+
+  <!-- Navbar -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#">
+        UrbanStyle
+      </a>
+
+      <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent">
+
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+
+      <div class="collapse navbar-collapse"
+        id="navbarSupportedContent">
+
+        <ul class="navbar-nav me-auto">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#mens">Men</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#ladies">Women</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#about-us">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- Hero Section -->
+
+  <section id="home">
+
+    <div class="home_page">
+
+      <div class="home_txt">
+
+        <h2>Discover Your Perfect Style</h2>
+
+        <p>
+          Explore modern fashion collections designed for comfort,
+          confidence, and everyday elegance.
+          Find the perfect outfit for every occasion.
+
+  
+</div> 
+        </p>
+
+        <button>
+          <a href="#mens">Shop Now</a>
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Men's Section -->
+
+  <section id="mens" class="container mt-5">
+
+    <h2 class="text-center">Men's Collection</h2>
+
+    <div class="best-seller">
+
+      <div class="best-p1">
+
+        <img src="https://th.bing.com/th/id/OIP.KdNTIT0xX_DHUVo3pWkOLgHaHa?w=208&h=208&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+          alt="Men Fashion">
+
+        <div class="best-p1-txt">
+
+          <div class="name-of-p">
+            Classic Denim Jacket
+          </div>
+
+          <div class="price">
+            RS 700
+          </div>
+
+          <div class="buy-now">
+            <button>
+              <a href="file:///C:/Users/Aftab/OneDrive/Desktop/project/payment.html">Buy Now</a>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="best-p1">
+
+        <img src="https://th.bing.com/th/id/OIP.lm1cO1gcQQQhwxNA1pr6twHaG-?w=208&h=196&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+          alt="Shirt">
+
+        <div class="best-p1-txt">
+
+          <div class="name-of-p">
+            Premium Cotton Shirt
+          </div>
+
+          <div class="price">
+            RS 550
+          </div>
+
+          <div class="buy-now">
+            <button>
+              <a href="file:///C:/Users/Aftab/OneDrive/Desktop/project/payment.html">Buy Now</a>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Women's Section -->
+
+  <section id="ladies" class="container mt-5">
+
+    <h2 class="text-center">Women's Collection</h2>
+
+    <div class="best-seller">
+
+      <div class="best-p1">
+
+        <img src="https://th.bing.com/th/id/OIP.19KIjjSna4ZyRV9Zv0EjzQHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+          alt="Women Fashion">
+
+        <div class="best-p1-txt">
+
+          <div class="name-of-p">
+            Elegant Summer Dress
+          </div>
+
+          <div class="price">
+            RS 850
+          </div>
+
+          <div class="buy-now">
+            <button>
+              <a href="file:///C:/Users/Aftab/OneDrive/Desktop/project/payment.html">Buy Now</a>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="best-p1">
+
+        <img src="https://th.bing.com/th/id/OIP.MQ6EuOUiJjGIqhRRt0tiCAHaJ3?w=208&h=277&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+          alt="Women Fashion">
+
+        <div class="best-p1-txt">
+
+          <div class="name-of-p">
+            Floral Printed Outfit
+          </div>
+
+          <div class="price">
+            RS 650
+          </div>
+
+          <div class="buy-now">
+            <button>
+              <a href="file:///C:/Users/Aftab/OneDrive/Desktop/project/payment.html">Buy Now</a>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- About Section -->
+
+  <section id="about-us">
+
+    <div class="container about">
+
+      <img src="pexels-n-voitkevich-6214473.jpg"
+        alt="About Us">
+
+      <div class="text">
+
+        <h2>About Us</h2>
+
+        <p>
+          At UrbanStyle, we believe fashion is more than clothing.
+          It is a reflection of personality, confidence, and lifestyle.
+        </p>
+
+        <p>
+          Our mission is to provide trendy, comfortable,
+          and affordable fashion for everyone.
+          Every item is carefully selected to match modern fashion trends.
+        </p>
+
+        <p>
+          We focus on quality products, customer satisfaction,
+          and a smooth shopping experience for every visitor.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Contact Section -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="form">
+
+        <div class="form-txt">
+
+          <h4>INFORMATION</h4>
+
+          <h1>Contact Us</h1>
+
+          <p>
+            Have questions or need assistance?
+            Our team is always ready to help you.
+          </p>
+
+          <h5>Email</h5>
+          <p>support@urbanstyle.com</p>
+
+          <h5>Phone</h5>
+          <p>+91 9876543210</p>
+
+        </div>
+
+        <div class="form-details">
+
+          <form action="https://formspree.io/f/xzbowpjq"
+            method="POST">
+
+            <input type="text"
+              name="name"
+              placeholder="Your Name"
+              required>
+
+            <input type="email"
+              name="email"
+              placeholder="Your Email"
+              required>
+
+            <textarea name="message"
+              rows="6"
+              placeholder="Write your message here..."
+              required></textarea>
+
+            <button type="submit">
+              Send Message
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+
+  <footer>
+
+    <div class="container footer-container">
+
+      <div>
+
+        <h4>UrbanStyle</h4>
+
+        <p>
+          Bringing modern fashion trends and premium quality
+          clothing together for every generation.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4>Quick Links</h4>
+
+        <a href="#">Home</a>
+        <a href="#mens">Men</a>
+        <a href="#ladies">Women</a>
+        <a href="#about-us">About</a>
+
+      </div>
+
+      <div>
+
+        <h4>Customer Support</h4>
+
+        <a href="#">Payment Options</a>
+        <a href="#">Shipping Details</a>
+        <a href="#">Return Policy</a>
+
+      </div>
+
+      <div>
+
+        <h4>Newsletter</h4>
+
+        <p>
+          Subscribe to receive updates about
+          new arrivals and special offers.
+        </p>
+
+        <input type="email"
+          placeholder="Your Email"
+          class="form-control">
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- Bootstrap JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+```
